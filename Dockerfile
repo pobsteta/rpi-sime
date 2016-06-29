@@ -30,12 +30,10 @@ RUN set -x \
 	&& gosu nobody true
 
 # On ajoute le dépôt QGIS pour raspbian
-RUN echo "deb http://archive.raspbian.org/raspbian jessie main contrib non-free" > /etc/apt/sources.list.d/qgis.list
-RUN echo "deb-src http://archive.raspbian.org/raspbian jessie main contrib non-free" > /etc/apt/sources.list.d/qgis.list
+RUN echo "deb http://archive.raspbian.org/raspbian jessie main contrib non-free" > /etc/apt/sources.list.d/raspjessie.list
 RUN echo "deb http://qgis.org/debian jessie main" > /etc/apt/sources.list.d/qgis.list
-RUN echo "deb-src http://qgis.org/debian jessie main" > /etc/apt/sources.list.d/qgis.list
-RUN gpg --recv-key DD45F6C3
-RUN gpg --export --armor DD45F6C3 | sudo apt-key add -
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key 3FF5FFCAD71472C4
+RUN wget https://archive.raspbian.org/raspbian.public.key -O - | sudo apt-key add -
 
 # On ajoute le dépôt R
 RUN echo "deb http://cran.uni-muenster.de/bin/linux/debian jessie-cran3/" > /etc/apt/sources.list.d/rcran.list
