@@ -30,17 +30,17 @@ RUN set -x \
 	&& gosu nobody true
 
 # On ajoute le dépôt QGIS pour raspbian
-RUN echo "deb http://archive.raspbian.org/raspbian jessie main contrib non-free" > /etc/apt/sources.list.d/raspjessie.list
-RUN echo "deb http://qgis.org/debian jessie main" > /etc/apt/sources.list.d/qgis.list
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key 3FF5FFCAD71472C4
-RUN wget https://archive.raspbian.org/raspbian.public.key -O - | sudo apt-key add -
+#RUN echo "deb http://archive.raspbian.org/raspbian jessie main contrib non-free" > /etc/apt/sources.list.d/raspjessie.list
+#RUN echo "deb http://qgis.org/debian jessie main" > /etc/apt/sources.list.d/qgis.list
+#RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key 3FF5FFCAD71472C4
+#RUN wget https://archive.raspbian.org/raspbian.public.key -O - | sudo apt-key add -
 
 # On ajoute le dépôt R
 RUN echo "deb http://cran.rstudio.com/bin/linux/debian jessie-cran3/" > /etc/apt/sources.list.d/rcran.list
 RUN apt-key adv --keyserver subkeys.pgp.net --recv-key 381BA480
 
 # On met à jour
-RUN apt-get update && apt-get upgrade
+RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
 
 # On installe les dépendances de Tryton, R et QGIS
 # Pour QGIS, R, Tryton
