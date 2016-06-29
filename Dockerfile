@@ -40,7 +40,7 @@ RUN echo "deb http://cran.rstudio.com/bin/linux/debian jessie-cran3/" > /etc/apt
 RUN apt-key adv --keyserver subkeys.pgp.net --recv-key 381BA480
 
 # On met à jour
-RUN apt-get -y update
+RUN apt-get update && apt-get upgrade
 
 # On installe les dépendances de Tryton, R et QGIS
 # Pour QGIS, R, Tryton
