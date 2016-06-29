@@ -29,12 +29,18 @@ RUN set -x \
 	&& chmod +x /usr/local/bin/gosu \
 	&& gosu nobody true
 
+# On ajoute le dépôt debian backport
+RUN echo "deb http://httpredir.debian.org/debian jessie-backports main contrib non-free" > /etc/apt/sources.list.d/jessie-backport.list
+
 # On met à jour
 RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
 
 # On installe les dépendances de Tryton, R et QGIS
-# Pour QGIS, R, Tryton
-RUN apt-get install -y python-dev python-pip python-lxml python-relatorio python-genshi python-dateutil python-polib python-sql python-psycopg2 python-webdav python-pydot unoconv python-sphinx python-simplejson python-yaml git libgdal1h python-software-properties software-properties-common libpq-dev python-ldap python-gdal python-rpy2 libgeos-dev python-vobject python-vatnumber apache2 qgis qgis-mapserver libapache2-mod-fcgid
+## Pour les standards
+RUN apt-get install -y python-dev python-pip python-lxml python-relatorio python-genshi python-dateutil python-polib python-sql python-psycopg2 python-webdav python-pydot unoconv python-sphinx python-simplejson python-yaml git libgdal1h python-software-properties software-properties-common libpq-dev python-ldap python-gdal libgeos-dev python-vobject python-vatnumber apache2 make
+
+## Pour QGIS, R, Tryton
+RUN apt-get install -y -t jessie-backports r-base python-rpy2 qgis-server libapache2-mod-fcgid
 
 ## On ajoute l'utilisateur par défaut tryton pour l'installation des librairies R
 # On ajoute l'utilisateur tryton au système
