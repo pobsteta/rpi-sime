@@ -30,8 +30,8 @@ RUN set -x \
 	&& gosu nobody true
 
 # On ajoute le dépôt QGIS pour raspbian
-#RUN echo "deb http://qgis.org/debian jessie main" > /etc/apt/sources.list.d/qgis.list
-#RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key 3FF5FFCAD71472C4
+RUN echo "deb http://qgis.org/debian jessie main" > /etc/apt/sources.list.d/qgis.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key 3FF5FFCAD71472C4
 
 # On ajoute le dépôt R
 #RUN echo "deb http://cran.rstudio.com/bin/linux/debian jessie-cran3/" > /etc/apt/sources.list.d/rcran.list
