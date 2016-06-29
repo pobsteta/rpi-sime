@@ -7,7 +7,8 @@
 #
 # Version 1.0
 
-FROM pobsteta/docker-base
+# Image de base resin/rpi-paspbian modifiée
+FROM resin/rpi-raspbian
 MAINTAINER Pascal Obstetar <pascal.obstetar@bioecoforests.com>
 
 # ---------- DEBUT --------------
@@ -26,8 +27,7 @@ RUN set -x \
 	&& gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
 	&& rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
 	&& chmod +x /usr/local/bin/gosu \
-	&& gosu nobody true \
-	&& apt-get purge -y --auto-remove ca-certificates
+	&& gosu nobody true
 
 # On ajoute le dépôt QGIS
 RUN echo "deb http://qgis.org/debian trusty main" > /etc/apt/sources.list.d/qgis.list
@@ -40,7 +40,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 # On met à jour
 RUN apt-get -y update
 
-# On installe les dépendances de PostgreSQL, Tryton, R et QGIS
+# On installe les dépendances de Tryton, R et QGIS
 # Pour QGIS, R, Tryton
 RUN apt-get install -y python-dev python-pip python-lxml python-relatorio python-genshi python-dateutil python-polib python-sql python-psycopg2 python-webdav python-pydot unoconv python-sphinx python-simplejson python-yaml git libgdal1h python-software-properties software-properties-common libpq-dev python-ldap python-gdal python-rpy2 libgeos-dev python-vobject python-vatnumber apache2 qgis qgis-server libapache2-mod-fcgid
 
