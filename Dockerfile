@@ -42,7 +42,7 @@ RUN apt-get update && apt-get upgrade && apt-get dist-upgrade
 
 # On installe les dépendances de Tryton, R et QGIS
 # Pour QGIS, R, Tryton
-RUN apt-get install -y python-dev python-pip python-lxml python-relatorio python-genshi python-dateutil python-polib python-sql python-psycopg2 python-webdav python-pydot unoconv python-sphinx python-simplejson python-yaml git libgdal1h python-software-properties software-properties-common libpq-dev python-ldap python-gdal python-rpy2 libgeos-dev python-vobject python-vatnumber apache2 qgis qgis-server libapache2-mod-fcgid
+RUN apt-get install -y python-dev python-pip python-lxml python-relatorio python-genshi python-dateutil python-polib python-sql python-psycopg2 python-webdav python-pydot unoconv python-sphinx python-simplejson python-yaml git libgdal1h python-software-properties software-properties-common libpq-dev python-ldap python-gdal python-rpy2 libgeos-dev python-vobject python-vatnumber apache2 qgis qgis-mapserver libapache2-mod-fcgid
 
 ## On ajoute l'utilisateur par défaut tryton pour l'installation des librairies R
 # On ajoute l'utilisateur tryton au système
